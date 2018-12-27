@@ -1,0 +1,262 @@
+[gd_scene load_steps=31 format=2]
+
+[ext_resource path="res://Nodes and scenes/KinematicBody2D.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Nion Sprite stand gifte1.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Nion Sprite stand gifte2.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Nion Sprite stand gifte3.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Nion Sprite stand gifte4.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Nion Sprite stand gifte5.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Nion Sprite stand gifte6.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Nion Walk sprite gifo1.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Nion Walk sprite gifo2.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Nion Walk sprite gifo3.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Nion Walk sprite gifo4.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/Nion Walk sprite gifo5.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/Nion Walk sprite gifo6.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/Nion Walk sprite gifo7.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/Nion Walk sprite gifo9.png" type="Texture" id=15]
+[ext_resource path="res://Sprites/Nion Walk sprite gifo8.png" type="Texture" id=16]
+[ext_resource path="res://Sprites/Nion Walk sprite gifo10.png" type="Texture" id=17]
+[ext_resource path="res://Sprites/Nion Walk sprite gifo11.png" type="Texture" id=18]
+[ext_resource path="res://Sprites/Nion Walk sprite gifo12.png" type="Texture" id=19]
+[ext_resource path="res://Sprites/Nion fly sprite gifo1.png" type="Texture" id=20]
+[ext_resource path="res://Sprites/Nion fly sprite gifo2.png" type="Texture" id=21]
+[ext_resource path="res://Sprites/Nion fly sprite gifo3.png" type="Texture" id=22]
+[ext_resource path="res://Sprites/Nion fly sprite gifo4.png" type="Texture" id=23]
+[ext_resource path="res://Sprites/Nion fly sprite gifo5.png" type="Texture" id=24]
+[ext_resource path="res://Sprites/Nion fly sprite gifo6.png" type="Texture" id=25]
+[ext_resource path="res://Sprites/Nion Down sprite.png" type="Texture" id=26]
+[ext_resource path="res://Sprites/Dark ground 1.png" type="Texture" id=27]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ) ],
+"loop": true,
+"name": "Walk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ) ],
+"loop": true,
+"name": "Fly",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 26 ) ],
+"loop": true,
+"name": "Aju",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 22.0
+
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 10 )
+
+[node name="World" type="Node" index="0"]
+
+[node name="Player" type="KinematicBody2D" parent="." index="0"]
+
+position = Vector2( 512, 416 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Player" index="0"]
+
+frames = SubResource( 1 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" index="1"]
+
+shape = SubResource( 2 )
+
+[node name="Walls" type="Node" parent="." index="1"]
+
+editor/display_folded = true
+
+[node name="Wall" type="StaticBody2D" parent="Walls" index="0"]
+
+editor/display_folded = true
+position = Vector2( 512, 512 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Walls/Wall" index="0"]
+
+texture = ExtResource( 27 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall" index="1"]
+
+scale = Vector2( 1.73077, 1.73077 )
+shape = SubResource( 3 )
+
+[node name="Wall2" type="StaticBody2D" parent="Walls" index="1"]
+
+editor/display_folded = true
+position = Vector2( 545, 512 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Walls/Wall2" index="0"]
+
+texture = ExtResource( 27 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall2" index="1"]
+
+scale = Vector2( 1.73077, 1.73077 )
+shape = SubResource( 3 )
+
+[node name="Wall3" type="StaticBody2D" parent="Walls" index="2"]
+
+editor/display_folded = true
+position = Vector2( 578, 512 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Walls/Wall3" index="0"]
+
+texture = ExtResource( 27 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall3" index="1"]
+
+scale = Vector2( 1.73077, 1.73077 )
+shape = SubResource( 3 )
+
+[node name="Wall4" type="StaticBody2D" parent="Walls" index="3"]
+
+editor/display_folded = true
+position = Vector2( 611, 512 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Walls/Wall4" index="0"]
+
+texture = ExtResource( 27 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall4" index="1"]
+
+scale = Vector2( 1.73077, 1.73077 )
+shape = SubResource( 3 )
+
+[node name="Wall5" type="StaticBody2D" parent="Walls" index="4"]
+
+editor/display_folded = true
+position = Vector2( 644, 512 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Walls/Wall5" index="0"]
+
+texture = ExtResource( 27 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall5" index="1"]
+
+scale = Vector2( 1.73077, 1.73077 )
+shape = SubResource( 3 )
+
+[node name="Wall6" type="StaticBody2D" parent="Walls" index="5"]
+
+editor/display_folded = true
+position = Vector2( 677, 479 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Walls/Wall6" index="0"]
+
+texture = ExtResource( 27 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall6" index="1"]
+
+scale = Vector2( 1.73077, 1.73077 )
+shape = SubResource( 3 )
+
+[node name="Wall7" type="StaticBody2D" parent="Walls" index="6"]
+
+editor/display_folded = true
+position = Vector2( 443, 479 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Walls/Wall7" index="0"]
+
+texture = ExtResource( 27 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall7" index="1"]
+
+scale = Vector2( 1.73077, 1.73077 )
+shape = SubResource( 3 )
+
+
